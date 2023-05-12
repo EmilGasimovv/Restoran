@@ -13,10 +13,10 @@ public class Main {
         menu.addMeal(new Meal(3, "burger", 5));
         menu.addMeal(new Meal(4, "Kumpir", 6));
         menu.addMeal(new Meal(5, "Tyox qanadlari", 5));
-        menu.addDrink(new Drink(6, "cola", 2));
-        menu.addDrink(new Drink(7, "fanta", 1));
-        menu.addDrink(new Drink(8, "Mountain dew", 2.5));
-        menu.addDrink(new Drink(9, "Cappy", 1.5));
+        menu.addDrink(new Drink(1, "cola", 2));
+        menu.addDrink(new Drink(2, "fanta", 1));
+        menu.addDrink(new Drink(3, "Mountain dew", 2.5));
+        menu.addDrink(new Drink(4, "Cappy", 1.5));
 
 
         System.out.println("Yemekler : ");
@@ -36,9 +36,11 @@ public class Main {
             Orders orders = new Orders();
             Order order;
             boolean state = true;
+            System.out.println("Yemek ucun - Y, Icki ucun I daxil edin...");
+            System.out.println("Secdiyiniz kateqoriyani sonlandirmaq ucun 0 daxil edin");
+            String situation= sc.nextLine();
             do {
-                System.out.println("Yemek ucun - Y, Icki ucun I basin...");
-                String situation= sc.nextLine();
+
                 System.out.println("");
                 int orderCount;
                 Scanner scan = new Scanner(System.in);
@@ -52,10 +54,21 @@ public class Main {
                         orders.addOrder(order);
                         System.out.println(order.getName() + " " + "Hesab : " + order.sumPrice() + " " + "azn");
                         System.out.println(" ");
-                    }else {
+                    } else if (orderNum==0){
+                        System.out.println("Yeni kateqoriya elave edin");
+                        System.out.println("Yemek ucun - Y , Icki ucun - I daxil edin. Hesabi almaq ucun H daxil edin");
+                       situation=sc.nextLine();
+                    }
+                    else {
                         System.out.println("Qeyd etdiyiniz mehsul menyuda yoxdur");
                     }
-                   } else if (situation.contains("I") || situation.contains("i")) {
+                   }
+
+
+
+
+
+                   else if (situation.contains("I") || situation.contains("i")) {
                        System.out.println("Icki id daxil edin: ");
                        int orderNum = scan.nextInt();
                        if (orderNum > 0 && orderNum<menu.drinkList.size()) {
@@ -65,6 +78,8 @@ public class Main {
                            orders.addOrder(order);
                            System.out.println(order.getName() + " " + "Hesab : " + order.sumPrice() + " " + "azn");
                            System.out.println(" ");
+                       } else if (orderNum==0){
+                           situation=sc.nextLine();
                        }
                        else {
                            System.out.println("Qeyd etdiyiniz mehsul menyuda yoxdur");
